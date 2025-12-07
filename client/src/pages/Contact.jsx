@@ -39,13 +39,13 @@ const Contact = () => {
 
                 {status === 'success' && (
                     <div className="mb-6 p-4 bg-green-900/50 text-green-200 rounded-lg text-center border border-green-800">
-                        Message sent successfully! I'll get back to you soon.
+                        ✅ Message submitted successfully! Your message has been saved to the database.
                     </div>
                 )}
 
                 {status === 'error' && (
                     <div className="mb-6 p-4 bg-red-900/50 text-red-200 rounded-lg text-center border border-red-800">
-                        Failed to send message. Please try again later.
+                        ❌ Failed to submit message. The message was not saved to the database. Please try again.
                     </div>
                 )}
 
