@@ -49,4 +49,34 @@ router.post('/contact', async (req, res) => {
     }
 });
 
+// DEBUG ROUTE - Check Database Content
+router.get('/debug-db', async (req, res) => {
+    try {
+        const mongoose = require('mongoose');
+
+        // 1. Get Database Name
+        const dbName = mongoose.connection.name;
+
+        // 2. Get All Collections
+        const collections = await mongoose.connection.db.listCollections().toArray();
+        const collectionNames = collections.map(c => c.name);
+
+        // 3. Get Data from 'Samuel' collection
+        const samuelData = await mongoose.connection.db.collection('Samuel').find({}).toArray();
+
+        // 4. Get Data from 'contacts' collection (just in case)
+        const contactsData = await mongoose.connection.db.collection('contacts').find({}).toArray();
+
+        res.json({
+            status: 'Connected',
+            currentDatabase: dbName,
+            collections: collectionNames,
+            dataInSamuelCollection: samuelData,
+            dataInContactsCollection: contactsData
+        });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
 module.exports = router;
