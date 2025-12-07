@@ -39,7 +39,7 @@ const Contact = () => {
 
                 {status === 'success' && (
                     <div className="mb-6 p-4 bg-green-900/50 text-green-200 rounded-lg text-center border border-green-800">
-                        ✅ Message submitted successfully! Your message has been saved to the database.
+                        ✅ Message entered successfully!
                     </div>
                 )}
 
