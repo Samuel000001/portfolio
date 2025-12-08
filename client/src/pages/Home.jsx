@@ -58,8 +58,8 @@ const Home = () => {
                                 3000,
                             ]}
                             wrapper="span"
-                            speed={50}
-                            deletionSpeed={70}
+                            speed={30}
+                            deletionSpeed={90}
                             repeat={Infinity}
                         />
                     </span>
