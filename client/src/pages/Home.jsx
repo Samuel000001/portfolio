@@ -68,12 +68,12 @@ const Home = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.3, duration: 0.5 }}
-                    className="text-xl md:text-2xl text-gray-400 mb-10 flex flex-wrap gap-2 justify-center items-center"
+                    className="text-xl md:text-2xl text-gray-400 mb-10 flex flex-col md:flex-row gap-2 md:gap-4 justify-center items-center"
                 >
                     <TooltipItem text="Engineer" meaning="Designing robust solutions for the real world." />
-                    <span>|</span>
+                    <span className="hidden md:block">|</span>
                     <TooltipItem text="Tech Enthusiast" meaning="Always exploring the cutting edge." />
-                    <span>|</span>
+                    <span className="hidden md:block">|</span>
                     <TooltipItem text="Problem Solver" meaning="Turning complex challenges into simple opportunities." />
                 </motion.p>
                 <motion.div
