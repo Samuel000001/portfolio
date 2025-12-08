@@ -3,11 +3,13 @@ import { Link } from 'react-router-dom';
 import { TypeAnimation } from 'react-type-animation';
 
 const TooltipItem = ({ text, meaning }) => (
-    <div className="relative group inline-block cursor-help">
-        <span className="hover:text-accent transition-colors duration-300 group-hover:text-accent cursor-pointer">
+    <div className="relative group inline-block cursor-help font-mono tracking-wide">
+        <span className="text-gray-500">&lt;</span>
+        <span className="hover:text-accent transition-colors duration-300 group-hover:text-accent cursor-pointer text-gray-300">
             {text}
         </span>
-        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-secondary text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0 pointer-events-none border border-gray-700 shadow-xl whitespace-nowrap z-50">
+        <span className="text-gray-500"> /&gt;</span>
+        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-secondary text-white text-sm font-sans rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0 pointer-events-none border border-gray-700 shadow-xl whitespace-nowrap z-50">
             {meaning}
             <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-secondary"></div>
         </div>
@@ -71,9 +73,9 @@ const Home = () => {
                     className="text-xl md:text-2xl text-gray-400 mb-10 flex flex-col md:flex-row gap-2 md:gap-4 justify-center items-center"
                 >
                     <TooltipItem text="Engineer" meaning="Designing robust solutions for the real world." />
-                    <span className="hidden md:block">|</span>
+                    <span className="hidden md:block text-accent">|</span>
                     <TooltipItem text="Tech Enthusiast" meaning="Always exploring the cutting edge." />
-                    <span className="hidden md:block">|</span>
+                    <span className="hidden md:block text-accent">|</span>
                     <TooltipItem text="Problem Solver" meaning="Turning complex challenges into simple opportunities." />
                 </motion.p>
                 <motion.div
@@ -84,13 +86,13 @@ const Home = () => {
                 >
                     <Link
                         to="/projects"
-                        className="px-8 py-3 bg-accent text-primary font-bold rounded-full hover:bg-opacity-90 transition-all transform hover:scale-105"
+                        className="px-8 py-3 bg-accent text-primary font-bold rounded-full hover:bg-opacity-90 active:scale-95 md:hover:scale-105 transition-all transform"
                     >
                         View My Work
                     </Link>
                     <Link
                         to="/contact"
-                        className="px-8 py-3 border-2 border-accent text-accent font-bold rounded-full hover:bg-accent hover:text-primary transition-all transform hover:scale-105"
+                        className="px-8 py-3 border-2 border-accent text-accent font-bold rounded-full hover:bg-accent hover:text-primary active:scale-95 md:hover:scale-105 transition-all transform"
                     >
                         Contact Me
                     </Link>
