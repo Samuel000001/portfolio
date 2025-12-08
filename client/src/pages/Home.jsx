@@ -86,13 +86,15 @@ const Home = () => {
                 >
                     <Link
                         to="/projects"
-                        className="px-8 py-3 bg-accent text-primary font-bold rounded-full hover:bg-opacity-90 active:scale-95 md:hover:scale-105 transition-all transform"
+                        className="px-8 py-3 bg-accent text-primary font-bold rounded-full hover:bg-opacity-90 active:scale-95 md:hover:scale-105 transition-all duration-200"
+                        style={{ WebkitTapHighlightColor: 'transparent' }}
                     >
                         View My Work
                     </Link>
                     <Link
                         to="/contact"
-                        className="px-8 py-3 border-2 border-accent text-accent font-bold rounded-full hover:bg-accent hover:text-primary active:scale-95 md:hover:scale-105 transition-all transform"
+                        className="px-8 py-3 border-2 border-accent text-accent font-bold rounded-full hover:bg-accent hover:text-primary active:scale-95 md:hover:scale-105 transition-all duration-200"
+                        style={{ WebkitTapHighlightColor: 'transparent' }}
                     >
                         Contact Me
                     </Link>
