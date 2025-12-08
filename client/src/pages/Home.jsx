@@ -43,9 +43,10 @@ const Home = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2, duration: 0.5 }}
                     className="text-5xl md:text-7xl font-bold mb-6"
+                    style={{ willChange: 'auto', contain: 'layout' }}
                 >
                     Hi, I'm{' '}
-                    <span className="text-accent inline-block">
+                    <span className="text-accent inline-block" style={{ minWidth: '280px', display: 'inline-block' }}>
                         <TypeAnimation
                             sequence={[
                                 'Samuel',
