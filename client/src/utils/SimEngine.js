@@ -20,6 +20,7 @@ export class Sim8085Engine {
         this.halted = false;
         this.im = 0;
         this.tStates = 0;
+        this.lastExecutedSourceLine = -1;
     }
 
     // --- Helpers ---
@@ -152,7 +153,8 @@ export class Sim8085Engine {
                     addr += 2;
                 }
 
-                this.program.push({ address: instrStart, opcode, operands, hex });
+                // Store 1-based line index
+                this.program.push({ address: instrStart, opcode, operands, hex, sourceLine: idx + 1 });
             } else {
                 console.warn(`Unknown instruction line ${idx + 1}: ${clean}`);
             }
@@ -160,6 +162,11 @@ export class Sim8085Engine {
 
         if (this.program.length > 0) this.registers.PC = 0x8000;
         return { success: true, message: `Assembled ${this.program.length} instructions to 0x8000` };
+    }
+
+    getSourceLine(pc) {
+        const instr = this.program.find(i => i.address === pc);
+        return instr ? instr.sourceLine : -1;
     }
 
     getInstrLength(opcode) {
@@ -189,6 +196,9 @@ export class Sim8085Engine {
             }
         }
         if (!instr) return false;
+
+        // Track last executed line
+        this.lastExecutedSourceLine = instr.sourceLine;
 
         const { opcode, operands } = instr;
         let nextPC = this.registers.PC + this.getInstrLength(opcode);

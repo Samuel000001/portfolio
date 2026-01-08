@@ -15,6 +15,7 @@ const Sim8085 = () => {
     const [flags, setFlags] = useState(engineRef.current.flags);
     const [tStates, setTStates] = useState(0);
     const [statusMsg, setStatusMsg] = useState('Ready');
+    const [activeLine, setActiveLine] = useState(-1);
     // Force re-render of memory when engine updates
     const [memRev, setMemRev] = useState(0);
 
@@ -37,6 +38,8 @@ const Sim8085 = () => {
         setRegisters({ ...engineRef.current.registers });
         setFlags({ ...engineRef.current.flags });
         setTStates(engineRef.current.tStates);
+        // Highlight logic: "Just Executed"
+        setActiveLine(engineRef.current.lastExecutedSourceLine);
         setMemRev(v => v + 1);
     };
 
@@ -232,13 +235,25 @@ const Sim8085 = () => {
                         <span>main.asm</span>
                     </div>
                     <div className="flex-grow relative h-full">
-                        <div className="absolute left-0 top-0 bottom-0 w-8 bg-black/20 border-r border-gray-800 text-right pr-2 pt-4 text-gray-600 font-mono text-xs leading-6 select-none">
-                            {[...Array(50)].map((_, i) => <div key={i}>{i + 1}</div>)}
+                        {/* Highlight Bar */}
+                        {activeLine > 0 && (
+                            <div
+                                className="absolute left-0 right-0 h-6 bg-yellow-500/20 pointer-events-none z-0"
+                                style={{ top: `${(activeLine - 1) * 24 + 16}px` }} // 1.5rem (24px) line-height + 1rem (16px) padding-top
+                            ></div>
+                        )}
+
+                        <div className="absolute left-0 top-0 bottom-0 w-8 bg-black/20 border-r border-gray-800 text-right pr-2 pt-4 text-gray-600 font-mono text-xs leading-6 select-none z-10">
+                            {[...Array(50)].map((_, i) => (
+                                <div key={i} className={i + 1 === activeLine ? 'text-yellow-500 font-bold' : ''}>
+                                    {i + 1}
+                                </div>
+                            ))}
                         </div>
                         <textarea
                             value={code}
                             onChange={(e) => setCode(e.target.value)}
-                            className="w-full h-full bg-transparent pl-10 p-4 font-mono text-sm text-blue-300 resize-none focus:outline-none leading-6 selection:bg-accent/30"
+                            className="w-full h-full bg-transparent pl-10 p-4 font-mono text-sm text-blue-300 resize-none focus:outline-none leading-6 selection:bg-accent/30 relative z-10"
                             spellCheck="false"
                             placeholder="; Enter 8085 Assembly Code Here..."
                         />
