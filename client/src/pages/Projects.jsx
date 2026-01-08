@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaMicrochip } from 'react-icons/fa';
 
 // Static projects data - loads instantly without API call
 const projects = [
@@ -26,6 +26,14 @@ const projects = [
         tags: ['React', 'Vite', 'Tailwind'],
         githubUrl: 'https://github.com/Samuel000001/portfolio',
         projectUrl: 'https://portfolio-indol-beta-26.vercel.app'
+    },
+    {
+        _id: '4',
+        title: 'Sim8085 Simulator',
+        description: 'A modern, web-based Intel 8085 Microprocessor simulator with real-time register monitoring.',
+        tags: ['React', 'Assembly', 'Framer Motion'],
+        githubUrl: '#',
+        projectUrl: '/simulator'
     }
 ];
 
